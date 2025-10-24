@@ -11,8 +11,18 @@ const adminRoutes = require('./routes/admin');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// ✅ CORS Configuration (add this)
+const allowedOrigins = [
+  'https://ecotrack-hackit.netlify.app', // your Netlify frontend URL
+  'http://localhost:3000'                // for local testing
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
+
 // Middleware
-app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
